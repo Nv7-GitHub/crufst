@@ -1,4 +1,4 @@
-[[package]]
+[package]
 name = "crufst"
 version = "0.1.0"
 authors = ["Nv7"]
