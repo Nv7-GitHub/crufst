@@ -2,6 +2,7 @@ use clap::{Parser, Subcommand};
 
 mod host;
 mod cmd;
+mod join;
 
 #[derive(Parser)]
 struct Args {
@@ -26,6 +27,6 @@ fn main() {
     let args = Args::parse();
     match args.commands {
         Commands::Host => host::host(),
-        Commands::Join{code} => {panic!("unimplemented")}
+        Commands::Join{code} => {join::join(code)}
     }
 }

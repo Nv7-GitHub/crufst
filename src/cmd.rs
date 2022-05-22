@@ -1,3 +1,5 @@
+use std::process::exit;
+
 pub fn clear() {
   eprint!("\x1b[H\x1b[2J");
 }
@@ -19,4 +21,13 @@ pub fn secondary(txt: &String) -> String {
 
 pub fn ternary(txt: &String) -> String {
   format!("\x1b[35;1m{}\x1b[0m", txt)
+}
+
+pub fn error(txt: &String) -> String {
+  format!("\x1b[31;1m{}\x1b[0m", txt)
+}
+
+pub fn end(msg: &String) -> ! {
+  println!("{}", error(&msg.to_string()));
+  exit(1);
 }
