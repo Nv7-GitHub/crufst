@@ -1,10 +1,9 @@
 use super::*;
 
 #[test]
-fn test_btree() {
-    let mut tree = BTree::new();
-    for i in 0..10 {
-        tree.insert(i);
-        println!("{tree:?}\n");
-    }
+fn test_db() {
+    let tab = Table::new("test.db", vec![
+        Column{typ: ColType::INT, name: "ID".to_string(), index: true},
+        Column{typ: ColType::STRING, name: "Name".to_string(), index: true},
+    ]).unwrap();
 }
