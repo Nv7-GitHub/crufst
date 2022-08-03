@@ -2,8 +2,6 @@ use std::io::{Read, Seek, SeekFrom};
 
 use super::*;
 
-const ROWHEADER: u8 = 0b10000000;
-
 impl Table {
   pub fn load(&mut self) -> Result<(), std::io::Error> {
     let mut pos = 0;

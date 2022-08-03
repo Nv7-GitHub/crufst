@@ -1,5 +1,9 @@
 use std::{fs::{File, OpenOptions}, collections::HashMap, hash};
 mod load;
+mod insert;
+
+const ROWHEADER: u8 = 0b10000000;
+
 mod test;
 
 pub struct Table {
@@ -15,6 +19,7 @@ struct FreeChunk {
     size: usize,
 }
 
+#[derive(PartialEq)]
 pub enum ColType {
     INT, // i64
     FLOAT, // f64
@@ -56,11 +61,21 @@ impl PartialEq for Float {
 }
 impl Eq for Float {}
 
-#[derive(Hash, PartialEq, Eq)]
+#[derive(Hash, PartialEq, Eq, Debug)]
 pub enum Value {
     INT(i64),
     FLOAT(Float),
     STRING(String),
+}
+
+impl Value {
+    pub fn col_type(&self) -> ColType {
+        match self {
+            Self::INT(_) => ColType::INT,
+            Self::FLOAT(_) => ColType::FLOAT,
+            Self::STRING(_) => ColType::STRING,
+        }   
+    }
 }
 
 impl Table {
